@@ -1,8 +1,8 @@
 import { makeSchema } from 'nexus';
-import * as QueryTypes from './Query';
+import * as types from './types/index';
 
 const schema = makeSchema({
-  types: [QueryTypes]
+  types: [types]
 });
 
 export default schema;

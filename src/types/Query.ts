@@ -1,13 +1,5 @@
-import { objectType, queryType } from 'nexus';
-import { query } from '../query/database';
-
-export const Framework = objectType({
-  name: 'Framework',
-  definition(t) {
-    t.id('id');
-    t.string('name');
-  }
-});
+import { queryType, stringArg } from 'nexus';
+import { query } from '../database';
 
 export const Query = queryType({
   definition(t) {
@@ -22,6 +14,11 @@ export const Query = queryType({
           return e;
         }
       }
+    });
+
+    t.string('hello', {
+      args: { name: stringArg() },
+      resolve: (parent, { name }) => `Hello ${name || 'World'}!`
     });
   }
 });
