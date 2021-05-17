@@ -1,19 +1,18 @@
-import { queryType, stringArg } from 'nexus';
-import { query } from '../database';
+import { intArg, queryType, stringArg } from 'nexus';
+import productsFindByIDQuery from "./query/productFindByIDQuery";
+import productsQuery from "./query/ProductsQuery";
 
 export const Query = queryType({
   definition(t) {
-    t.list.field('frameworks', {
-      type: 'Framework',
-      resolve: async () => {
-        try {
-          const results = await query(`SELECT * FROM products`);
+    t.list.field('products', {
+      type: 'Products',
+      resolve: productsQuery
+    });
 
-          return results;
-        } catch (e) {
-          return e;
-        }
-      }
+    t.list.field('productFindByID', {
+      type: 'Products',
+      args: { id: intArg() },
+      resolve: productsFindByIDQuery
     });
 
     t.string('hello', {
