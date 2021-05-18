@@ -1,5 +1,6 @@
 import { floatArg, intArg, queryType, stringArg } from 'nexus';
 import productAdd from './query/productAdd';
+import productDelete from './query/productDelete';
 import productsFindByIDQuery from './query/productFindByIDQuery';
 import productsQuery from './query/productsQuery';
 
@@ -19,6 +20,11 @@ export const Query = queryType({
     t.string('productAdd', {
       args: { name: stringArg(), price: floatArg() },
       resolve: productAdd
+    });
+
+    t.string('productDelete', {
+      args: { id: intArg() },
+      resolve: productDelete
     });
 
     t.string('hello', {
