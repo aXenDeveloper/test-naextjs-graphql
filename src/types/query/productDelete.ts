@@ -3,7 +3,7 @@ import { query } from '../../database';
 
 const productDelete: FieldResolver<'Query', 'productDelete'> = async (parent, { id }) => {
   try {
-    await query(`DELETE FROM products WHERE id=${id}`);
+    await query(`DELETE FROM products WHERE id=?`, [id]);
 
     return `Deleted product ID: ${id}`;
   } catch (e) {

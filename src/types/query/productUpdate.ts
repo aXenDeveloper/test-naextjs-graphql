@@ -7,6 +7,7 @@ const productUpdate: FieldResolver<'Query', 'productUpdate'> = async (
 ) => {
   try {
     await query(`UPDATE products SET price=?, name=? WHERE id=?`, [price, name, id]);
+
     return `Edit ID: ${id} - ${name} for price: ${price}`;
   } catch (e) {
     return e;
