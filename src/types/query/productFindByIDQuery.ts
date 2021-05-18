@@ -1,11 +1,13 @@
-import { query } from "../../database";
+import { FieldResolver } from 'nexus';
+import { query } from '../../database';
 
-const productsFindByIDQuery = async (parent, { id }) => {
+const productsFindByIDQuery: FieldResolver<'Query', 'productFindByID'> = async (parent, { id }) => {
   try {
-    const results = await query(`SELECT * FROM products WHERE id=${id}`);
+    const results = await query(`SELECT * FROM products WHERE id=?`, [id]);
     return results;
   } catch (e) {
     return e;
   }
-}
+};
+
 export default productsFindByIDQuery;

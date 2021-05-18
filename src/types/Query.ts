@@ -1,6 +1,7 @@
-import { intArg, queryType, stringArg } from 'nexus';
-import productsFindByIDQuery from "./query/productFindByIDQuery";
-import productsQuery from "./query/ProductsQuery";
+import { floatArg, intArg, queryType, stringArg } from 'nexus';
+import productAdd from './query/productAdd';
+import productsFindByIDQuery from './query/productFindByIDQuery';
+import productsQuery from './query/productsQuery';
 
 export const Query = queryType({
   definition(t) {
@@ -13,6 +14,11 @@ export const Query = queryType({
       type: 'Products',
       args: { id: intArg() },
       resolve: productsFindByIDQuery
+    });
+
+    t.string('productAdd', {
+      args: { name: stringArg(), price: floatArg() },
+      resolve: productAdd
     });
 
     t.string('hello', {
