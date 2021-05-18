@@ -1,7 +1,7 @@
 import { FieldResolver } from 'nexus';
 import { query } from '../../database';
 
-const productDelete: FieldResolver<'Query', 'productAdd'> = async (parent, { id }) => {
+const productDelete: FieldResolver<'Query', 'productDelete'> = async (parent, { id }) => {
   try {
     await query(`DELETE FROM products WHERE id=${id}`);
 

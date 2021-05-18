@@ -3,6 +3,7 @@ import productAdd from './query/productAdd';
 import productDelete from './query/productDelete';
 import productsFindByIDQuery from './query/productFindByIDQuery';
 import productsQuery from './query/productsQuery';
+import productUpdate from './query/productUpdate';
 
 export const Query = queryType({
   definition(t) {
@@ -25,6 +26,11 @@ export const Query = queryType({
     t.string('productDelete', {
       args: { id: intArg() },
       resolve: productDelete
+    });
+
+    t.string('productUpdate', {
+      args: { id: intArg(), name: stringArg(), price: floatArg() },
+      resolve: productUpdate
     });
 
     t.string('hello', {
